@@ -84,3 +84,4 @@ No environment variables are required for a basic local run.
 - If fonts or icons differ, confirm network access and that Tailwind is processing `app/globals.css`.
 - For TypeScript warnings during `next build`, note `ignoreBuildErrors: true` in `next.config.mjs`.
 
+2025-11-10T12:15:30
