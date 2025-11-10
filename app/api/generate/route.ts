@@ -150,13 +150,14 @@ export async function POST(request: Request) {
     console.log("Found images:", images);
 
     if (images.length === 0) {
+      // Return friendly message with HTTP 200 so client can render a nice notice
       return new Response(
         JSON.stringify({
-          error: "No image returned from model",
+          images: [],
+          error: "The model did not return an image. Try a more specific prompt (e.g. 'return a PNG image of ...') or switch to a model that outputs images.",
           raw: data,
-          debug: "Check console for full response details"
         }),
-        { status: 500, headers: { "Content-Type": "application/json" } }
+        { status: 200, headers: { "Content-Type": "application/json" } }
       );
     }
 

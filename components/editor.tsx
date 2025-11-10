@@ -1,12 +1,14 @@
 "use client"
 
 import type React from "react"
+import { toast } from "sonner"
 
 import { useState } from "react"
 import { Button } from "@/components/ui/button"
 import { Card } from "@/components/ui/card"
 import { Textarea } from "@/components/ui/textarea"
 import { Upload, Sparkles } from "lucide-react"
+import { Spinner } from "@/components/ui/spinner"
 
 export function Editor() {
   const [prompt, setPrompt] = useState("")
@@ -111,14 +113,18 @@ export function Editor() {
           if (t) message = `Generation failed: ${t}`
         }
         setError(message)
+        try { toast.error(message) } catch {}
         return
       }
       const data = (await res.json()) as { images?: string[]; error?: string }
       if (!data.images || data.images.length === 0) {
-        setError(data.error || "No image returned")
+        const msg = data.error || "No image returned"
+        setError(msg)
+        try { toast.error(msg) } catch {}
         return
       }
       setGeneratedImages(data.images)
+      try { toast.success("Images generated successfully") } catch {}
     } catch (err: any) {
       setError(err?.message ?? "Unexpected error")
     } finally {
@@ -184,8 +190,15 @@ export function Editor() {
               onClick={handleGenerate}
               disabled={isGenerating}
             >
-              <Sparkles className="mr-2 h-4 w-4" />
-              {isGenerating ? "Generating..." : "Generate Now"}
+              {isGenerating ? (
+                <>
+                  <Spinner className="mr-2 h-4 w-4" /> Generating...
+                </>
+              ) : (
+                <>
+                  <Sparkles className="mr-2 h-4 w-4" /> Generate Now
+                </>
+              )}
             </Button>
           </Card>
 
