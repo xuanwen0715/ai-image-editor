@@ -32,19 +32,21 @@ export const metadata: Metadata = {
     url: "https://ai-image-editor-iota.vercel.app",
     siteName: "AI Image Editor",
     images: [
-      { url: "/og.svg", width: 1200, height: 630, alt: "AI Image Editor" },
+      { url: "/og?title=AI%20Image%20Editor", width: 1200, height: 630, alt: "AI Image Editor" },
     ],
   },
   twitter: {
     card: "summary_large_image",
     title: "AI Image Editor",
     description: "Edit any photo with simple text commands.",
-    images: ["/og.svg"],
+    images: ["/og?title=AI%20Image%20Editor"],
   },
   icons: {
     icon: "/icon.svg",
     shortcut: "/favicon.svg",
+    apple: "/icon.svg",
   },
+  manifest: "/manifest.webmanifest",
 };
 
 export default function RootLayout({

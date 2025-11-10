@@ -16,6 +16,31 @@ export function Editor() {
   const [isGenerating, setIsGenerating] = useState(false)
   const [generatedImages, setGeneratedImages] = useState<string[]>([])
   const [error, setError] = useState<string | null>(null)
+  const [model, setModel] = useState<string>(
+    process.env.NEXT_PUBLIC_DEFAULT_MODEL || "google/gemini-2.5-flash-image-preview"
+  )
+  const templates = [
+    {
+      name: "Photorealistic Enhance",
+      text:
+        "Return a high-quality PNG image with natural colors and lighting. Improve details and realism while preserving identity. Size 1024x1024.",
+    },
+    {
+      name: "Artistic Stylize",
+      text:
+        "Generate a stylized PNG image with vibrant purple-blue palette, soft gradients and smooth bokeh lighting. Size 1024x1024.",
+    },
+    {
+      name: "Background Cleanup",
+      text:
+        "Provide a clean PNG image with the background removed and replaced by a subtle gradient. Crisp edges, no halos. Size 1024x1024.",
+    },
+    {
+      name: "Data URL Output",
+      text:
+        "Return the generated image as base64 data with mime_type 'image/png' in the response. PNG, 1024x1024, photorealistic.",
+    },
+  ]
 
   const compressImage = (file: File): Promise<string> => {
     return new Promise((resolve, reject) => {
@@ -100,7 +125,7 @@ export function Editor() {
       const res = await fetch("/api/generate", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ prompt, image: selectedImage }),
+        body: JSON.stringify({ prompt, image: selectedImage, model }),
       })
       if (!res.ok) {
         let message = "Generation failed"
@@ -146,6 +171,36 @@ export function Editor() {
               <h3 className="text-lg font-semibold text-foreground">Prompt Engine</h3>
             </div>
             <p className="text-sm text-muted-foreground mb-4">Transform your image with AI-powered editing</p>
+
+            {/* Model & Templates */}
+            <div className="mb-4 grid grid-cols-1 md:grid-cols-2 gap-3">
+              <div>
+                <label className="block text-sm font-medium mb-2 text-foreground">Model</label>
+                <select
+                  className="w-full rounded-md border bg-background px-3 py-2 text-sm"
+                  value={model}
+                  onChange={(e) => setModel(e.target.value)}
+                >
+                  <option value="google/gemini-2.5-flash-image-preview">Gemini 2.5 Flash Image Preview</option>
+                  <option value="openai/dall-e-3">OpenAI DALL·E 3</option>
+                </select>
+              </div>
+              <div>
+                <label className="block text-sm font-medium mb-2 text-foreground">Prompt Templates</label>
+                <div className="flex flex-wrap gap-2">
+                  {templates.map((t) => (
+                    <button
+                      key={t.name}
+                      type="button"
+                      onClick={() => setPrompt(t.text)}
+                      className="text-xs rounded-full border px-3 py-1 hover:bg-secondary/60"
+                    >
+                      {t.name}
+                    </button>
+                  ))}
+                </div>
+              </div>
+            </div>
 
             {/* Image Upload */}
             <div className="mb-4">

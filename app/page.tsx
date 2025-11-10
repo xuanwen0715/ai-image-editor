@@ -3,7 +3,7 @@ import { Editor } from '@/components/editor'
 export default function Home() {
   return (
     <main>
-      <section className="relative overflow-hidden py-16 md:py-24">
+      <section className="relative overflow-hidden py-16 md:py-24 animate-fade-up">
         <div className="pointer-events-none absolute inset-0 opacity-60">
           <div className="absolute -top-32 left-1/2 h-72 w-[1100px] -translate-x-1/2 rounded-full bg-gradient-to-r from-primary/25 via-accent/20 to-primary/25 blur-3xl" />
         </div>

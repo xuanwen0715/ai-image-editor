@@ -3,11 +3,12 @@ export const runtime = "nodejs";
 type GenerateRequest = {
   prompt: string;
   image: string; // data URL or http(s) URL
+  model?: string; // optional override
 };
 
 export async function POST(request: Request) {
   try {
-    const { prompt, image } = (await request.json()) as GenerateRequest;
+    const { prompt, image, model: clientModel } = (await request.json()) as GenerateRequest;
 
     if (!prompt || !image) {
       return new Response(
@@ -25,7 +26,7 @@ export async function POST(request: Request) {
     }
 
     // Use Gemini for image generation
-    const model = process.env.OPENROUTER_MODEL || "google/gemini-2.5-flash-image-preview";
+    const model = clientModel || process.env.OPENROUTER_MODEL || "google/gemini-2.5-flash-image-preview";
 
     const body = {
       model,
