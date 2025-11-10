@@ -32,14 +32,14 @@ export const metadata: Metadata = {
     url: "https://ai-image-editor-iota.vercel.app",
     siteName: "AI Image Editor",
     images: [
-      { url: "/og?title=AI%20Image%20Editor", width: 1200, height: 630, alt: "AI Image Editor" },
+      { url: "/opengraph-image", width: 1200, height: 630, alt: "AI Image Editor" },
     ],
   },
   twitter: {
     card: "summary_large_image",
     title: "AI Image Editor",
     description: "Edit any photo with simple text commands.",
-    images: ["/og?title=AI%20Image%20Editor"],
+    images: ["/twitter-image"],
   },
   icons: {
     icon: "/icon.svg",
