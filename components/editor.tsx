@@ -159,7 +159,7 @@ export function Editor() {
 
   return (
     <section id="editor" className="relative py-16 md:py-20">
-      <div className="container">
+      <div className="mx-auto w-full max-w-7xl px-4 md:px-6">
 
         <div className="grid md:grid-cols-2 gap-6 max-w-6xl mx-auto">
           {/* Prompt Engine */}

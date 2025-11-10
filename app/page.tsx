@@ -7,7 +7,7 @@ export default function Home() {
         <div className="pointer-events-none absolute inset-0 opacity-60">
           <div className="absolute -top-32 left-1/2 h-72 w-[1100px] -translate-x-1/2 rounded-full bg-gradient-to-r from-primary/25 via-accent/20 to-primary/25 blur-3xl" />
         </div>
-        <div className="container relative">
+        <div className="mx-auto w-full max-w-5xl px-4 md:px-6 relative">
           <h1 className="mx-auto max-w-3xl text-center text-4xl font-extrabold tracking-tight md:text-6xl">
             <span className="bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">Try The AI Editor</span>
           </h1>
