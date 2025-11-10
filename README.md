@@ -65,3 +65,5 @@ npm run dev
 ## 许可证
 
 MIT License
+
+Deployment note: 2025-11-10T12:13:30
