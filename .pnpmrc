@@ -1,4 +1,0 @@
-# 允许运行构建脚本
-enable-pre-post-scripts=true
-# 允许sharp等包运行安装脚本
-ignore-scripts=false
