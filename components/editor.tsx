@@ -127,19 +127,12 @@ export function Editor() {
   }
 
   return (
-    <section id="editor" className="py-20 bg-background">
+    <section id="editor" className="relative py-16 md:py-20">
       <div className="container">
-        <div className="mx-auto max-w-5xl text-center mb-12">
-          <h2 className="text-3xl md:text-4xl font-bold mb-4 text-foreground">Try The AI Editor</h2>
-          <p className="text-lg text-muted-foreground leading-relaxed">
-            Experience the power of nano-banana's natural language image editing. Transform any photo with simple text
-            commands
-          </p>
-        </div>
 
         <div className="grid md:grid-cols-2 gap-6 max-w-6xl mx-auto">
           {/* Prompt Engine */}
-          <Card className="p-6 border-2 border-primary/20">
+          <Card className="p-6 border border-border bg-card/60 backdrop-blur supports-[backdrop-filter]:bg-card/40 shadow-lg">
             <div className="mb-4 flex items-center gap-2">
               <div className="rounded-lg bg-primary/10 p-2">
                 <Sparkles className="h-5 w-5 text-primary" />
@@ -151,7 +144,7 @@ export function Editor() {
             {/* Image Upload */}
             <div className="mb-4">
               <label className="block text-sm font-medium mb-2 text-foreground">Reference Image</label>
-              <div className="border-2 border-dashed border-border rounded-lg p-8 text-center hover:border-primary/50 transition-colors cursor-pointer">
+              <div className="border-2 border-dashed border-border rounded-lg p-8 text-center hover:border-primary/60 transition-colors cursor-pointer bg-secondary/30">
                 <input type="file" accept="image/*" onChange={handleImageUpload} className="hidden" id="image-upload" />
                 <label htmlFor="image-upload" className="cursor-pointer">
                   {selectedImage ? (
@@ -186,7 +179,7 @@ export function Editor() {
             </div>
 
             <Button
-              className="w-full bg-primary text-primary-foreground hover:bg-primary/90"
+              className="w-full bg-gradient-to-r from-primary to-accent text-primary-foreground hover:opacity-95 shadow-md"
               size="lg"
               onClick={handleGenerate}
               disabled={isGenerating}
@@ -197,7 +190,7 @@ export function Editor() {
           </Card>
 
           {/* Output Gallery */}
-          <Card className="p-6 border-2 border-border">
+          <Card className="p-6 border border-border bg-card/60 backdrop-blur supports-[backdrop-filter]:bg-card/40 shadow-lg">
             <div className="mb-4 flex items-center gap-2">
               <div className="rounded-lg bg-secondary p-2">
                 <Upload className="h-5 w-5 text-foreground" />
@@ -219,7 +212,7 @@ export function Editor() {
                 ))}
               </div>
             ) : (
-              <div className="flex items-center justify-center min-h-80 border-2 border-dashed border-border rounded-lg bg-secondary/30">
+              <div className="flex items-center justify-center min-h-80 border-2 border-dashed border-border rounded-lg bg-secondary/40">
                 <div className="text-center">
                   <div className="mx-auto mb-4 h-20 w-20 rounded-full bg-secondary flex items-center justify-center">
                     <Upload className="h-10 w-10 text-muted-foreground" />
