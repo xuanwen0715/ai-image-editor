@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Inter } from "next/font/google";
 import "@/styles/globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
@@ -21,10 +21,6 @@ export const metadata: Metadata = {
   },
   description: "Natural language image editing powered by Gemini via OpenRouter.",
   keywords: ["AI", "image", "editor", "Next.js", "OpenRouter", "Gemini"],
-  themeColor: [
-    { media: "(prefers-color-scheme: light)", color: "#2563eb" },
-    { media: "(prefers-color-scheme: dark)", color: "#60a5fa" },
-  ],
   openGraph: {
     type: "website",
     title: "AI Image Editor",
@@ -49,6 +45,12 @@ export const metadata: Metadata = {
   manifest: "/manifest.webmanifest",
 };
 
+export const viewport: Viewport = {
+  themeColor: [
+    { media: "(prefers-color-scheme: light)", color: "#2563eb" },
+    { media: "(prefers-color-scheme: dark)", color: "#60a5fa" },
+  ],
+};
 export default function RootLayout({
   children,
 }: {

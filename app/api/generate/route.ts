@@ -147,8 +147,6 @@ export async function POST(request: Request) {
     }
 
     // Debug logging
-    console.log("Full API response:", JSON.stringify(data, null, 2));
-    console.log("Found images:", images);
 
     if (images.length === 0) {
       // Return friendly message with HTTP 200 so client can render a nice notice
